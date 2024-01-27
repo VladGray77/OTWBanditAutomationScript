@@ -1,0 +1,29 @@
+
+#Requirements
+# Check if sshpass is installed
+if command -v sshpass >/dev/null 2>&1; then
+    echo "sshpass is already installed."
+else
+    # Install sshpass
+    echo "Installing sshpass..."
+    if command -v apt-get >/dev/null 2>&1; then
+        sudo apt-get update
+        sudo apt-get install -y sshpass
+    elif command -v yum >/dev/null 2>&1; then
+        sudo yum install -y sshpass
+    elif command -v zypper >/dev/null 2>&1; then
+        sudo zypper install -y sshpass
+    else
+        echo "Unsupported package manager. Please install sshpass manually."
+        exit 1
+    fi
+
+    # Verify installation
+    if command -v sshpass >/dev/null 2>&1; then
+        echo "sshpass is now installed."
+    else
+        echo "Failed to install sshpass. Please install it manually."
+        exit 1
+    fi
+fi
+
