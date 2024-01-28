@@ -122,5 +122,87 @@ password_for_level=$(get_bandit_password $level $password "cat /var/lib/dpkg/inf
 # Append to the password file
 append_to_password_file $level "$password_for_level"
 
+# Level 7
+level=7
 
+# Extract password for Level  from BANDIT_PASSWORDS.txt
+password_for_level_7=$(grep "Level 6 password:" PASSWORDS.txt | cut -d ' ' -f 4)
+
+password=$password_for_level_7
+
+# Get the password for Level 7
+password_for_level=$(get_bandit_password $level $password "cat data.txt | grep millionth data.txt | awk '{print $2}' | sed 's/millionth//'")
+
+# Append to the password file
+append_to_password_file $level "$password_for_level"
+
+# Level 8
+level=8
+
+# Extract password for Level  from BANDIT_PASSWORDS.txt
+password_for_level_8=$(grep "Level 7 password:" PASSWORDS.txt | cut -d ' ' -f 4)
+
+password=$password_for_level_8
+
+# Get the password for Level 8
+password_for_level=$(get_bandit_password $level $password "cat data.txt | sort | uniq -u")
+
+# Append to the password file
+append_to_password_file $level "$password_for_level"
+
+# Level 9
+level=9
+
+# Extract password for Level  from BANDIT_PASSWORDS.txt
+password_for_level_9=$(grep "Level 8 password:" PASSWORDS.txt | cut -d ' ' -f 4)
+
+password=$password_for_level_9
+
+# Get the password for Level 9
+password_for_level=$(get_bandit_password $level $password "cat data.txt | strings -e s | grep == | awk '{print $NF}' | tail -n 1 | sed 's/==========//'")
+
+# Append to the password file
+append_to_password_file $level "$password_for_level"
+
+# Level 10
+level=10
+
+# Extract password for Level  from BANDIT_PASSWORDS.txt
+password_for_level_10=$(grep "Level 9 password:" PASSWORDS.txt | cut -d ' ' -f 4)
+
+password=$password_for_level_10
+
+# Get the password for Level 10
+password_for_level=$(get_bandit_password $level $password "cat data.txt | base64 -d | sed 's/The password is //'")
+
+# Append to the password file
+append_to_password_file $level "$password_for_level"
+
+# Level 11
+level=11
+
+# Extract password for Level  from BANDIT_PASSWORDS.txt
+password_for_level_11=$(grep "Level 10 password:" PASSWORDS.txt | cut -d ' ' -f 4)
+
+password=$password_for_level_11
+
+# Get the password for Level 11
+password_for_level=$(get_bandit_password $level $password "cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m' | sed 's/The password is //'")
+
+# Append to the password file
+append_to_password_file $level "$password_for_level"
+
+# Level 12
+level=12
+
+# Extract password for Level  from BANDIT_PASSWORDS.txt
+password_for_level_12=$(grep "Level 11 password:" PASSWORDS.txt | cut -d ' ' -f 4)
+
+password=$password_for_level_12
+
+# Get the password for Level 12
+password_for_level=$(get_bandit_password $level $password "mkdir -p /tmp/vladdy6 && cp /home/bandit12/data.txt /tmp/vladdy6/ && cd /tmp/vladdy6 && xxd -r data.txt > vladdy && mv vladdy vladdy.gz && gunzip vladdy.gz && bunzip2 vladdy && mv vladdy.out vladdy.gz && gunzip vladdy.gz && tar -xf vladdy && tar -xf data5.bin && bunzip2 data6.bin && tar -xf data6.bin.out && mv data8.bin data8.gz && gunzip data8.gz && cat data8 | grep "The password is " | cut -d ' ' -f 4")
+
+# Append to the password file
+append_to_password_file $level "$password_for_level"
 
